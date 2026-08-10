@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+
+# C / C++
+*.o
+*.obj
+*.exe
+*.out
+
+# Java
+*.class
+*.jar
+
+# Node.js / JavaScript
+node_modules/
+dist/
+
+# IDEs & Editors (VS Code, JetBrains, Visual Studio)
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Operating System Files
+.DS_Store
+Thumbs.db

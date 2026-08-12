@@ -1,0 +1,303 @@
+extern printf
+extern scanf
+extern pow
+extern sqrt
+extern usleep
+
+section .data
+    prompt_a:       db "Enter first number (a): ", 0
+    prompt_b:       db "Enter second number (b): ", 0
+    prompt_exp:     db 10, " Enter a custom exponent power to raise 'a': ", 0
+    fmt_scan:       db "%lf", 0
+
+    fmt_basic_hdr:  db 10, " Basic Operations ", 10, 0
+    fmt_add:        db "Addition: a + b = %lf", 10, 0
+    fmt_sub:        db "Subtraction: a - b = %lf", 10, 0
+    fmt_mul:        db "Multiplication: a * b = %lf", 10, 0
+    fmt_div:        db "Division: a / b = %lf", 10, 0
+    err_div_zero:   db "Division: Cannot divide by zero!", 10, 0
+
+    fmt_pow_hdr:    db 10, " Powers ", 10, 0
+    fmt_a_sq:       db "a squared (a^2): %lf", 10, 0
+    fmt_a_cu:       db "a cubed (a^3): %lf", 10, 0
+    fmt_b_sq:       db "b squared (b^2): %lf", 10, 0
+    fmt_b_cu:       db "b cubed (b^3): %lf", 10, 0
+    fmt_a_pow_b:    db "a raised to power b (a^b): %lf", 10, 0
+    fmt_custom_pow: db "a^%lf = %lf", 10, 0
+
+    fmt_sqrt_hdr:   db 10, " Square Root ", 10, 0
+    fmt_sqrt_a:     db "Square root of a (√a): %lf", 10, 0
+    fmt_sqrt_b:     db "Square root of b (√b): %lf", 10, 0
+    err_sqrt_neg_a: db "Square root of a: Cannot calculate sqrt of negative number!", 10, 0
+    err_sqrt_neg_b: db "Square root of b: Cannot calculate sqrt of negative number!", 10, 0
+
+    ; --- ASCII Art Messages ---
+    err_cookie_hdr: db 10, "  [ ERROR! OOPS... ]", 10, 0
+    cookie_line1:   db "     .-'''''-.  ", 10, 0
+    cookie_line2:   db "    /  o   O  \ ", 10, 0
+    cookie_line3:   db "   |  o   o  o |  <-- (Crispy Error Cookie!)", 10, 0
+    cookie_line4:   db "    \   O    /  ", 10, 0
+    cookie_line5:   db "     '-.....-'  ", 10, 0
+
+    cupcake_msg:    db 10, "  [ WELL DONE! EXCELLENT WORK! ]", 10,
+                    db "       (  )  (  )  ", 10,
+                    db "      (  *  *  )  ", 10,
+                    db "     ===========", 10,
+                    db "     \         /  <-- (Sweet Success Cupcake!)", 10,
+                    db "      \_______/ ", 10, 10, 0
+
+    two:            dq 2.0
+    three:          dq 3.0
+    zero:           dq 0.0
+
+section .bss
+    a:              resq 1
+    b:              resq 1
+    power_exp:      resq 1
+
+section .text
+    global main
+
+; --- Function: Show Cookie Error ---
+show_cookie_error:
+    push rbp
+    mov rbp, rsp
+
+    mov rdi, err_cookie_hdr
+    xor rax, rax
+    call printf
+
+    mov r12, 2          ; Loop 2 times
+.loop:
+    mov rdi, cookie_line1
+    xor rax, rax
+    call printf
+    mov rdi, cookie_line2
+    xor rax, rax
+    call printf
+    mov rdi, cookie_line3
+    xor rax, rax
+    call printf
+    mov rdi, cookie_line4
+    xor rax, rax
+    call printf
+    mov rdi, cookie_line5
+    xor rax, rax
+    call printf
+
+    mov rdi, 300000     ; 0.3 seconds (300,000 microseconds)
+    call usleep
+
+    dec r12
+    jnz .loop
+
+    leave
+    ret
+
+; --- Function: Show Cupcake Success ---
+show_cupcake_success:
+    push rbp
+    mov rbp, rsp
+    mov rdi, cupcake_msg
+    xor rax, rax
+    call printf
+    leave
+    ret
+
+; --- Main Program ---
+main:
+    push rbp
+    mov rbp, rsp
+
+    ; Input a
+    mov rdi, prompt_a
+    xor rax, rax
+    call printf
+
+    mov rdi, fmt_scan
+    mov rsi, a
+    xor rax, rax
+    call scanf
+    cmp eax, 1
+    jne .input_error
+
+    ; Input b
+    mov rdi, prompt_b
+    xor rax, rax
+    call printf
+
+    mov rdi, fmt_scan
+    mov rsi, b
+    xor rax, rax
+    call scanf
+    cmp eax, 1
+    jne .input_error
+
+    ; Basic Operations Header
+    mov rdi, fmt_basic_hdr
+    xor rax, rax
+    call printf
+
+    ; Addition: a + b
+    movsd xmm0, [a]
+    addsd xmm0, [b]
+    mov rdi, fmt_add
+    mov rax, 1
+    call printf
+
+    ; Subtraction: a - b
+    movsd xmm0, [a]
+    subsd xmm0, [b]
+    mov rdi, fmt_sub
+    mov rax, 1
+    call printf
+
+    ; Multiplication: a * b
+    movsd xmm0, [a]
+    mulsd xmm0, [b]
+    mov rdi, fmt_mul
+    mov rax, 1
+    call printf
+
+    ; Division Guard (b != 0)
+    movsd xmm0, [b]
+    ucomisd xmm0, [zero]
+    jp .do_div          ; Parity flag set means unordered comparison
+    je .div_zero
+
+.do_div:
+    movsd xmm0, [a]
+    divsd xmm0, [b]
+    mov rdi, fmt_div
+    mov rax, 1
+    call printf
+    call show_cupcake_success
+    jmp .powers_section
+
+.div_zero:
+    mov rdi, err_div_zero
+    xor rax, rax
+    call printf
+    call show_cookie_error
+
+.powers_section:
+    mov rdi, fmt_pow_hdr
+    xor rax, rax
+    call printf
+
+    ; a^2
+    movsd xmm0, [a]
+    movsd xmm1, [two]
+    call pow
+    mov rdi, fmt_a_sq
+    mov rax, 1
+    call printf
+
+    ; a^3
+    movsd xmm0, [a]
+    movsd xmm1, [three]
+    call pow
+    mov rdi, fmt_a_cu
+    mov rax, 1
+    call printf
+
+    ; b^2
+    movsd xmm0, [b]
+    movsd xmm1, [two]
+    call pow
+    mov rdi, fmt_b_sq
+    mov rax, 1
+    call printf
+
+    ; b^3
+    movsd xmm0, [b]
+    movsd xmm1, [three]
+    call pow
+    mov rdi, fmt_b_cu
+    mov rax, 1
+    call printf
+
+    ; a^b
+    movsd xmm0, [a]
+    movsd xmm1, [b]
+    call pow
+    mov rdi, fmt_a_pow_b
+    mov rax, 1
+    call printf
+
+    ; Custom Power Input
+    mov rdi, prompt_exp
+    xor rax, rax
+    call printf
+
+    mov rdi, fmt_scan
+    mov rsi, power_exp
+    xor rax, rax
+    call scanf
+    cmp eax, 1
+    jne .exp_error
+
+    movsd xmm0, [a]
+    movsd xmm1, [power_exp]
+    call pow
+    movsd xmm1, xmm0        ; Result in xmm1
+    movsd xmm0, [power_exp] ; Exponent in xmm0
+    mov rdi, fmt_custom_pow
+    mov rax, 2
+    call printf
+    call show_cupcake_success
+    jmp .sqrt_section
+
+.exp_error:
+    call show_cookie_error
+
+.sqrt_section:
+    mov rdi, fmt_sqrt_hdr
+    xor rax, rax
+    call printf
+
+    ; Sqrt(a) Check
+    movsd xmm0, [a]
+    ucomisd xmm0, [zero]
+    jb .sqrt_a_neg
+
+    call sqrt
+    mov rdi, fmt_sqrt_a
+    mov rax, 1
+    call printf
+    call show_cupcake_success
+    jmp .check_sqrt_b
+
+.sqrt_a_neg:
+    mov rdi, err_sqrt_neg_a
+    xor rax, rax
+    call printf
+    call show_cookie_error
+
+.check_sqrt_b:
+    ; Sqrt(b) Check
+    movsd xmm0, [b]
+    ucomisd xmm0, [zero]
+    jb .sqrt_b_neg
+
+    call sqrt
+    mov rdi, fmt_sqrt_b
+    mov rax, 1
+    call printf
+    call show_cupcake_success
+    jmp .end
+
+.sqrt_b_neg:
+    mov rdi, err_sqrt_neg_b
+    xor rax, rax
+    call printf
+    call show_cookie_error
+    jmp .end
+
+.input_error:
+    call show_cookie_error
+
+.end:
+    xor eax, eax
+    leave
+    ret

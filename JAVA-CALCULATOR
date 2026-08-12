@@ -1,3 +1,7 @@
+// Here's the calculator in C language
+//Hope you like it!!!
+//If you have any  suggestions and things to add please let me know
+
 import java.util.Scanner;
 
 public class Calculator {

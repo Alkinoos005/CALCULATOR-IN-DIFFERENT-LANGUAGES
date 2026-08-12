@@ -1,0 +1,8 @@
+<?php
+$a = readline("Enter first number: ");
+$b = readline("Enter second number: ");
+echo "Addition: " . ($a + $b) . "\n";
+echo "Subtraction: " . ($a - $b) . "\n";
+echo "Multiplication: " . ($a * $b) . "\n";
+echo "Division: " . ($a / $b) . "\n";
+?>

@@ -19,7 +19,7 @@ void show_cookie_error() {
     }
 }
 
-// Animation για επιτυχία (Cupcake)
+// Success Animation Effect (Cupcake)
 void show_cupcake_success() {
     printf("\n  [ WELL DONE! EXCELLENT WORK! ]\n");
     printf("       (  )  (  )  \n");

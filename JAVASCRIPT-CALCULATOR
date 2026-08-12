@@ -1,3 +1,9 @@
+// Here's the calculator in Javascript programming language
+//Hope you like it!!!
+//If you have any  suggestions and things to add please let me know
+
+
+
 let a = parseFloat(prompt("Enter first number: "));
 let b = parseFloat(prompt("Enter second number: "));
 console.log("Addition:", a + b);

@@ -7,6 +7,7 @@
 #include <math.h>
 
 int main() {
+
     double a, b;
 
     printf("Enter first number (a): ");
@@ -14,22 +15,22 @@ int main() {
     printf("Enter second number (b): ");
     scanf("%lf", &b);
 
-    printf("\n--- Basic Operations ---\n");
+    printf("\n Basic Operations starting now!!!\n");
     printf("Addition: a + b = %lf\n", a + b);
     printf("Subtraction: a - b = %lf\n", a - b);
     printf("Multiplication: a * b = %lf\n", a * b);
 
-    // Check for division by zero
+    // Check for division by zero 
     if (b != 0) {
         printf("Division: a / b = %lf\n", a / b);
     } else {
         printf("Division: Cannot divide by zero!\n");
     }
 
-    printf("\n--- Operations with Parentheses () ---\n");
+    printf("\n Operations with Parentheses () \n");
     printf("Grouped Expression: (a + b) * 2 = %lf\n", (a + b) * 2);
 
-    printf("\n--- Square Root (Ρίζα) ---\n");
+    printf("\n Square Root \n");
     // Check if numbers are non-negative for real square roots
     if (a >= 0) {
         printf("Square root of a (√a): %lf\n", sqrt(a));

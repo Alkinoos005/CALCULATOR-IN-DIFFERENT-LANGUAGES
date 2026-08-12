@@ -2,6 +2,11 @@
 //Hope you like it!!!
 //If you have any  suggestions and things to add please let me know!!!
 
+//Here is the code translated into Assembly (x86-64 NASM for Linux).
+
+//Because Assembly handles I/O and floating-point numbers (floats/doubles) at a low level.
+//I use C functions (printf, scanf, pow, sqrt, usleep) to keep the code clean and functional.
+
 
 extern printf
 extern scanf

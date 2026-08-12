@@ -3,7 +3,6 @@
 //If you have any  suggestions and things to add please let me know
 
 #include <stdio.h>
-#include <stdio.h>
 #include <math.h>
 
 int main() {

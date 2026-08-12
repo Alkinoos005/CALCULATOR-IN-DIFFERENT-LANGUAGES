@@ -311,3 +311,10 @@ main:
     xor eax, eax
     leave
     ret
+
+Instructions  For COmpilation:  
+
+Bash
+nasm -f elf64 calculator.asm -o calculator.o
+gcc -no-pie calculator.o -o calculator -lm
+./calculator

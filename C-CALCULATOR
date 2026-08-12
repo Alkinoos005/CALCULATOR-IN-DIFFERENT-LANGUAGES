@@ -65,10 +65,10 @@ int main() {
     printf("b squared (b^2): %lf\n", pow(b, 2));
     printf("b cubed (b^3): %lf\n", pow(b, 3));
 
-    // Δύναμη επιλογής του χρήστη (a^b)
+    // The user picks the power he/she wants to use (a^b)
     printf("a raised to power b (a^b): %lf\n", pow(a, b));
     
-    printf("\nEnter a custom exponent power to raise 'a': ");
+    printf("\n Enter a custom exponent power to raise 'a': ");
     if (scanf("%lf", &power_exp) == 1) {
         printf("a^%lf = %lf\n", power_exp, pow(a, power_exp));
         show_cupcake_success();
@@ -77,7 +77,7 @@ int main() {
         show_cookie_error();
     }
 
-    printf("--- Square Root (Ρίζα) ---\n");
+    printf(" Square Root \n");
     if (a >= 0) {
         printf("Square root of a (√a): %lf\n", sqrt(a));
         show_cupcake_success();

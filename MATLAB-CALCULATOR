@@ -1,7 +1,87 @@
 
-a = input('Enter first number: ');
-b = input('Enter second number: ');
-disp(['Addition: ', num2str(a + b)]);
-disp(['Subtraction: ', num2str(a - b)]);
-disp(['Multiplication: ', num2str(a * b)]);
-disp(['Division: ', num2str(a / b)]);
+
+
+function calculator()
+    a = input('Enter first number (a): ');
+    b = input('Enter second number (b): ');
+
+    % Validation check for numeric inputs
+    if ~isnumeric(a) || ~isnumeric(b) || isempty(a) || isempty(b)
+        show_cookie_error();
+        return;
+    end
+
+    disp(' ');
+    disp(' Basic Operations ');
+    disp(['Addition: a + b = ', num2str(a + b)]);
+    disp(['Subtraction: a - b = ', num2str(a - b)]);
+    disp(['Multiplication: a * b = ', num2str(a * b)]);
+
+    % Check for division by zero
+    if b ~= 0
+        disp(['Division: a / b = ', num2str(a / b)]);
+        show_cupcake_success();
+    else
+        disp('Division: Cannot divide by zero!');
+        show_cookie_error();
+    end
+
+    disp(' Powers ');
+    % (^2) & (^3) & (a^b)
+    disp(['a squared (a^2): ', num2str(a^2)]);
+    disp(['a cubed (a^3): ', num2str(a^3)]);
+    disp(['b squared (b^2): ', num2str(b^2)]);
+    disp(['b cubed (b^3): ', num2str(b^3)]);
+    disp(['a raised to power b (a^b): ', num2str(a^b)]);
+
+    disp(' ');
+    power_exp = input('Enter a custom exponent power to raise ''a'': ');
+    if isnumeric(power_exp) && ~isempty(power_exp)
+        disp(['a^', num2str(power_exp), ' = ', num2str(a^power_exp)]);
+        show_cupcake_success();
+    else
+        disp('Invalid exponent entered!');
+        show_cookie_error();
+        return;
+    end
+
+    disp(' Square Root ');
+    if a >= 0
+        disp(['Square root of a (√a): ', num2str(sqrt(a))]);
+        show_cupcake_success();
+    else
+        disp('Square root of a: Cannot calculate sqrt of negative number!');
+        show_cookie_error();
+    end
+
+    if b >= 0
+        disp(['Square root of b (√b): ', num2str(sqrt(b))]);
+        show_cupcake_success();
+    else
+        disp('Square root of b: Cannot calculate sqrt of negative number!');
+        show_cookie_error();
+    end
+end
+
+% Animation For Mistakes / Error (Cookie)
+function show_cookie_error()
+    fprintf('\n  [ ERROR! OOPS... ]\n');
+    for i = 1:2
+        fprintf('     .-''''''-.  \n');
+        fprintf('    /  o   O  \\ \n');
+        fprintf('   |  o   o  o |  <-- (Crispy Error Cookie!)\n');
+        fprintf('    \\   O    /  \n');
+        fprintf('     ''-.....-''  \n');
+        pause(0.3); % 0.3 seconds delay
+    end
+end
+
+% Success Animation Effect (Cupcake)
+function show_cupcake_success()
+    fprintf('\n  [ WELL DONE! EXCELLENT WORK! ]\n');
+    fprintf('       (  )  (  )  \n');
+    fprintf('      (  *  *  )  \n');
+    fprintf('     ===========\n');
+    fprintf('     \\         /  <-- (Sweet Success Cupcake!)\n');
+    fprintf('      \\_______/ \n\n');
+end

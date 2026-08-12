@@ -312,7 +312,7 @@ main:
     leave
     ret
 
-Instructions  For COmpilation:  
+Instructions  For Compilation:  
 
 Bash
 nasm -f elf64 calculator.asm -o calculator.o

@@ -2,19 +2,106 @@
 //Hope you like it!!!
 //If you have any  suggestions and things to add please let me know
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Calculator {
+
+    // Animation For Mistakes/Error (Cookie)
+    public static void showCookieError() {
+        System.out.println("\n  [ ERROR! OOPS... ]");
+        for (int i = 0; i < 2; i++) {
+            System.out.println("     .-'''''-.  ");
+            System.out.println("    /  o   O  \\ ");
+            System.out.println("   |  o   o  o |  <-- (Crispy Error Cookie!)");
+            System.out.println("    \\   O    /  ");
+            System.out.println("     '-.....-'  ");
+            try {
+                Thread.sleep(300); // 0.3 seconds delay for animation effect
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
+    // Success Animation Effect (Cupcake)
+    public static void showCupcakeSuccess() {
+        System.out.println("\n  [ WELL DONE! EXCELLENT WORK! ]");
+        System.out.println("       (  )  (  )  ");
+        System.out.println("      (  *  *  )  ");
+        System.out.println("     ===========");
+        System.out.println("     \\         /  <-- (Sweet Success Cupcake!)");
+        System.out.println("      \\_______/ \n");
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter first number: ");
-        double a = scanner.nextDouble();
-        System.out.print("Enter second number: ");
-        double b = scanner.nextDouble();
-        System.out.println("Addition: " + (a + b));
-        System.out.println("Subtraction: " + (a - b));
-        System.out.println("Multiplication: " + (a * b));
-        System.out.println("Division: " + (a / b));
+        double a, b, powerExp;
+
+        try {
+            System.out.print("Enter first number (a): ");
+            a = scanner.nextDouble();
+            System.out.print("Enter second number (b): ");
+            b = scanner.nextDouble();
+        } catch (InputMismatchException e) {
+            showCookieError();
+            scanner.close();
+            return;
+        }
+
+        System.out.println("\n Basic Operations ");
+        System.out.println("Addition: a + b = " + (a + b));
+        System.out.println("Subtraction: a - b = " + (a - b));
+        System.out.println("Multiplication: a * b = " + (a * b));
+
+        // Check for division by zero
+        if (b != 0) {
+            System.out.println("Division: a / b = " + (a / b));
+            showCupcakeSuccess();
+        } else {
+            System.out.println("Division: Cannot divide by zero!");
+            showCookieError();
+        }
+
+        System.out.println(" Powers ");
+        // (^2) & (^3)
+        System.out.println("a squared (a^2): " + Math.pow(a, 2));
+        System.out.println("a cubed (a^3): " + Math.pow(a, 3));
+        System.out.println("b squared (b^2): " + Math.pow(b, 2));
+        System.out.println("b cubed (b^3): " + Math.pow(b, 3));
+
+        // The user picks the power he/she wants to use (a^b)
+        System.out.println("a raised to power b (a^b): " + Math.pow(a, b));
+
+        try {
+            System.out.print("\n Enter a custom exponent power to raise 'a': ");
+            powerExp = scanner.nextDouble();
+            System.out.println("a^" + powerExp + " = " + Math.pow(a, powerExp));
+            showCupcakeSuccess();
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid exponent entered!");
+            showCookieError();
+            scanner.close();
+            return;
+        }
+
+        System.out.println(" Square Root ");
+        if (a >= 0) {
+            System.out.println("Square root of a (√a): " + Math.sqrt(a));
+            showCupcakeSuccess();
+        } else {
+            System.out.println("Square root of a: Cannot calculate sqrt of negative number!");
+            showCookieError();
+        }
+
+        if (b >= 0) {
+            System.out.println("Square root of b (√b): " + Math.sqrt(b));
+            showCupcakeSuccess();
+        } else {
+            System.out.println("Square root of b: Cannot calculate sqrt of negative number!");
+            showCookieError();
+        }
+
+        scanner.close();
     }
 }
-

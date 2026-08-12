@@ -2,9 +2,81 @@
 //Hope you like it!!!
 //If you have any  suggestions and things to add please let me know
 
-a = float(input("Enter first number: "))
-b = float(input("Enter second number: "))
-print("Addition:", a + b)
-print("Subtraction:", a - b)
-print("Multiplication:", a * b)
-print("Division:", a / b)
+import math
+import time
+
+def show_cookie_error():
+    print("\n  [ ERROR! OOPS... ]")
+    for _ in range(2):
+        print("     .-'''''-.  ")
+        print("    /  o   O  \\ ")
+        print("   |  o   o  o |  <-- (Crispy Error Cookie!)")
+        print("    \\   O    /  ")
+        print("     '-.....-'  ")
+        time.sleep(0.3)  # 0.3 seconds delay for animation effect
+
+def show_cupcake_success():
+    print("\n  [ WELL DONE! EXCELLENT WORK! ]")
+    print("       (  )  (  )  ")
+    print("      (  *  *  )  ")
+    print("     ===========")
+    print("     \\         /  <-- (Sweet Success Cupcake!)")
+    print("      \\_______/ \n")
+
+def get_float_input(prompt):
+    try:
+        return float(input(prompt))
+    except ValueError:
+        show_cookie_error()
+        return None
+
+# Input numbers
+a = get_float_input("Enter first number (a): ")
+if a is None:
+    exit(1)
+
+b = get_float_input("Enter second number (b): ")
+if b is None:
+    exit(1)
+
+print("\n Basic Operations ")
+print(f"Addition: a + b = {a + b}")
+print(f"Subtraction: a - b = {a - b}")
+print(f"Multiplication: a * b = {a * b}")
+
+# Division check
+if b != 0:
+    print(f"Division: a / b = {a / b}")
+    show_cupcake_success()
+else:
+    print("Division: Cannot divide by zero!")
+    show_cookie_error()
+
+print(" Powers ")
+print(f"a squared (a^2): {a ** 2}")
+print(f"a cubed (a^3): {a ** 3}")
+print(f"b squared (b^2): {b ** 2}")
+print(f"b cubed (b^3): {b ** 3}")
+print(f"a raised to power b (a^b): {a ** b}")
+
+power_exp = get_float_input("\n Enter a custom exponent power to raise 'a': ")
+if power_exp is not None:
+    print(f"a^{power_exp} = {a ** power_exp}")
+    show_cupcake_success()
+else:
+    print("Invalid exponent entered!")
+
+print(" Square Root ")
+if a >= 0:
+    print(f"Square root of a (√a): {math.sqrt(a)}")
+    show_cupcake_success()
+else:
+    print("Square root of a: Cannot calculate sqrt of negative number!")
+    show_cookie_error()
+
+if b >= 0:
+    print(f"Square root of b (√b): {math.sqrt(b)}")
+    show_cupcake_success()
+else:
+    print("Square root of b: Cannot calculate sqrt of negative number!")
+    show_cookie_error()

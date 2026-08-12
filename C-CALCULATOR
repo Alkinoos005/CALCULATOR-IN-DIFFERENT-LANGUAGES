@@ -3,16 +3,45 @@
 //If you have any  suggestions and things to add please let me know
 
 #include <stdio.h>
+#include <stdio.h>
+#include <math.h>
 
 int main() {
     double a, b;
-    printf("Enter first number: ");
+
+    printf("Enter first number (a): ");
     scanf("%lf", &a);
-    printf("Enter second number: ");
+    printf("Enter second number (b): ");
     scanf("%lf", &b);
-    printf("Addition: %lf\n", a + b);
-    printf("Subtraction: %lf\n", a - b);
-    printf("Multiplication: %lf\n", a * b);
-    printf("Division: %lf\n", a / b);
+
+    printf("\n--- Basic Operations ---\n");
+    printf("Addition: a + b = %lf\n", a + b);
+    printf("Subtraction: a - b = %lf\n", a - b);
+    printf("Multiplication: a * b = %lf\n", a * b);
+
+    // Check for division by zero
+    if (b != 0) {
+        printf("Division: a / b = %lf\n", a / b);
+    } else {
+        printf("Division: Cannot divide by zero!\n");
+    }
+
+    printf("\n--- Operations with Parentheses () ---\n");
+    printf("Grouped Expression: (a + b) * 2 = %lf\n", (a + b) * 2);
+
+    printf("\n--- Square Root (Ρίζα) ---\n");
+    // Check if numbers are non-negative for real square roots
+    if (a >= 0) {
+        printf("Square root of a (√a): %lf\n", sqrt(a));
+    } else {
+        printf("Square root of a: Cannot calculate square root of a negative number!\n");
+    }
+
+    if (b >= 0) {
+        printf("Square root of b (√b): %lf\n", sqrt(b));
+    } else {
+        printf("Square root of b: Cannot calculate square root of a negative number!\n");
+    }
+
     return 0;
 }

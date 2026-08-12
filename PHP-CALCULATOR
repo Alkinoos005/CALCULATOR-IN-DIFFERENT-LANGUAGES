@@ -4,10 +4,92 @@
 
 
 <?php
-$a = readline("Enter first number: ");
-$b = readline("Enter second number: ");
-echo "Addition: " . ($a + $b) . "\n";
-echo "Subtraction: " . ($a - $b) . "\n";
-echo "Multiplication: " . ($a * $b) . "\n";
-echo "Division: " . ($a / $b) . "\n";
+
+// Animation For Mistakes / Error (Cookie)
+function showCookieError() {
+    echo "\n  [ ERROR! OOPS... ]\n";
+    for ($i = 0; $i < 2; $i++) {
+        echo "     .-'''''-.  \n";
+        echo "    /  o   O  \\ \n";
+        echo "   |  o   o  o |  <-- (Crispy Error Cookie!)\n";
+        echo "    \\   O    /  \n";
+        echo "     '-.....-'  \n";
+        usleep(300000); // 0.3 seconds delay for animation effect
+    }
+}
+
+// Success Animation Effect (Cupcake)
+function showCupcakeSuccess() {
+    echo "\n  [ WELL DONE! EXCELLENT WORK! ]\n";
+    echo "       (  )  (  )  \n";
+    echo "      (  *  *  )  \n";
+    echo "     ===========\n";
+    echo "     \\         /  <-- (Sweet Success Cupcake!)\n";
+    echo "      \\_______/ \n\n";
+}
+
+$a_input = readline("Enter first number (a): ");
+$b_input = readline("Enter second number (b): ");
+
+// Validation check for numeric inputs
+if (!is_numeric($a_input) || !is_numeric($b_input)) {
+    showCookieError();
+    exit(1);
+}
+
+$a = (float)$a_input;
+$b = (float)$b_input;
+
+echo "\n Basic Operations \n";
+echo "Addition: a + b = " . ($a + $b) . "\n";
+echo "Subtraction: a - b = " . ($a - $b) . "\n";
+echo "Multiplication: a * b = " . ($a * $b) . "\n";
+
+// Check for division by zero
+if ($b != 0) {
+    echo "Division: a / b = " . ($a / b) . "\n";
+    showCupcakeSuccess();
+} else {
+    echo "Division: Cannot divide by zero!\n";
+    showCookieError();
+}
+
+echo " Powers \n";
+// (^2) & (^3)
+echo "a squared (a^2): " . pow($a, 2) . "\n";
+echo "a cubed (a^3): " . pow($a, 3) . "\n";
+echo "b squared (b^2): " . pow($b, 2) . "\n";
+echo "b cubed (b^3): " . pow($b, 3) . "\n";
+
+// The user picks the power he/she wants to use (a^b)
+echo "a raised to power b (a^b): " . pow($a, $b) . "\n";
+
+$power_input = readline("\n Enter a custom exponent power to raise 'a': ");
+if (is_numeric($power_input)) {
+    $power_exp = (float)$power_input;
+    echo "a^{$power_exp} = " . pow($a, $power_exp) . "\n";
+    showCupcakeSuccess();
+} else {
+    echo "Invalid exponent entered!\n";
+    showCookieError();
+    exit(1);
+}
+
+echo " Square Root \n";
+if ($a >= 0) {
+    echo "Square root of a (√a): " . sqrt($a) . "\n";
+    showCupcakeSuccess();
+} else {
+    echo "Square root of a: Cannot calculate sqrt of negative number!\n";
+    showCookieError();
+}
+
+if ($b >= 0) {
+    echo "Square root of b (√b): " . sqrt($b) . "\n";
+    showCupcakeSuccess();
+} else {
+    echo "Square root of b: Cannot calculate sqrt of negative number!\n";
+    showCookieError();
+}
+
 ?>

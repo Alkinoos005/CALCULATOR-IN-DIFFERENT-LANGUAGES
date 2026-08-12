@@ -13,7 +13,7 @@ def show_cookie_error():
         print("   |  o   o  o |  <-- (Crispy Error Cookie!)")
         print("    \\   O    /  ")
         print("     '-.....-'  ")
-        time.sleep(0.3)  # 0.3 seconds delay for animation effect
+        time.sleep(0.3)  # 0.3 seconds delay for the animation effect
 
 def show_cupcake_success():
     print("\n  [ WELL DONE! EXCELLENT WORK! ]")

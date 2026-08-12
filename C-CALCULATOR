@@ -44,12 +44,12 @@ int main() {
         return 1;
     }
 
-    printf("\n--- Basic Operations ---\n");
+    printf("\n Basic Operations \n");
     printf("Addition: a + b = %lf\n", a + b);
     printf("Subtraction: a - b = %lf\n", a - b);
     printf("Multiplication: a * b = %lf\n", a * b);
 
-    // Έλεγχος διαίρεσης με το μηδέν
+    // Check for division by zero
     if (b != 0) {
         printf("Division: a / b = %lf\n", a / b);
         show_cupcake_success();
@@ -58,8 +58,8 @@ int main() {
         show_cookie_error();
     }
 
-    printf("--- Powers (Δυνάμεις) ---\n");
-    // Τετράγωνο (^2) και Κύβος (^3)
+    printf(" Powers  \n");
+    // (^2) & (^3)
     printf("a squared (a^2): %lf\n", pow(a, 2));
     printf("a cubed (a^3): %lf\n", pow(a, 3));
     printf("b squared (b^2): %lf\n", pow(b, 2));

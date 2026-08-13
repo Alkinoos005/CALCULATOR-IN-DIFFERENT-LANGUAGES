@@ -1,3 +1,7 @@
+// Here's the calculator in POWERSHELL programming language!!!
+//Hope you like it!!!
+//If you have any  suggestions and things to add please let me know!!!
+
 PowerShell
 $a = Read-Host "Enter first number"
 $b = Read-Host "Enter second number"

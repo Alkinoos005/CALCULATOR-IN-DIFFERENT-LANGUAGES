@@ -2,7 +2,101 @@
 //Hope you like it!!!
 //If you have any  suggestions and things to add please let me know!!!
 
+# Helper function for Animation Delays
+sleep <- function(seconds) {
+  Sys.sleep(seconds)
+}
 
+# Animation For Mistakes / Error (Cookie)
+show_cookie_error <- function() {
+  cat("\n  [ ERROR! OOPS... ]\n")
+  for (i in 1:2) {
+    cat("     .-'''''-.  \n")
+    cat("    /  o   O  \\ \n")
+    cat("   |  o   o  o |  <-- (Crispy Error Cookie!)\n")
+    cat("    \\   O    /  \n")
+    cat("     '-.....-'  \n")
+    sleep(0.3) # 0.3 seconds delay for animation effect
+  }
+}
+
+# Success Animation Effect (Cupcake)
+show_cupcake_success <- function() {
+  cat("\n  [ WELL DONE! EXCELLENT WORK! ]\n")
+  cat("       (  )  (  )  \n")
+  cat("      (  *  *  )  \n")
+  cat("     ===========\n")
+  cat("     \\         /  <-- (Sweet Success Cupcake!)\n")
+  cat("      \\_______/ \n\n")
+}
+
+# Helper function to read valid numeric input
+get_num_input <- function(prompt_msg) {
+  input <- readline(prompt = prompt_msg)
+  num <- as.numeric(input)
+  if (is.na(num)) {
+    show_cookie_error()
+    return(NULL)
+  }
+  return(num)
+}
+
+# Input reading
+a <- get_num_input("Enter first number (a): ")
+if (is.null(a)) quit(save = "no", status = 1)
+
+b <- get_num_input("Enter second number (b): ")
+if (is.null(b)) quit(save = "no", status = 1)
+
+cat("\n Basic Operations \n")
+cat("Addition: a + b =", a + b, "\n")
+cat("Subtraction: a - b =", a - b, "\n")
+cat("Multiplication: a * b =", a * b, "\n")
+
+# Check for division by zero
+if (b != 0) {
+  cat("Division: a / b =", a / b, "\n")
+  show_cupcake_success()
+} else {
+  cat("Division: Cannot divide by zero!\n")
+  show_cookie_error()
+}
+
+cat(" Powers \n")
+# (^2) & (^3)
+cat("a squared (a^2):", a^2, "\n")
+cat("a cubed (a^3):", a^3, "\n")
+cat("b squared (b^2):", b^2, "\n")
+cat("b cubed (b^3):", b^3, "\n")
+
+# The user picks the power he/she wants to use (a^b)
+cat("a raised to power b (a^b):", a^b, "\n")
+
+power_exp <- get_num_input("\n Enter a custom exponent power to raise 'a': ")
+if (!is.null(power_exp)) {
+  cat("a^", power_exp, " = ", a^power_exp, "\n", sep = "")
+  show_cupcake_success()
+} else {
+  cat("Invalid exponent entered!\n")
+  quit(save = "no", status = 1)
+}
+
+cat(" Square Root \n")
+if (a >= 0) {
+  cat("Square root of a (√a):", sqrt(a), "\n")
+  show_cupcake_success()
+} else {
+  cat("Square root of a: Cannot calculate sqrt of negative number!\n")
+  show_cookie_error()
+}
+
+if (b >= 0) {
+  cat("Square root of b (√b):", sqrt(b), "\n")
+  show_cupcake_success()
+} else {
+  cat("Square root of b: Cannot calculate sqrt of negative number!\n")
+  show_cookie_error()
+}
 
 a <- as.numeric(readline("Enter first number: "))
 b <- as.numeric(readline("Enter second number: "))

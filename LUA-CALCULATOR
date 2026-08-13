@@ -2,12 +2,98 @@
 //Hope you like it!!!
 //If you have any  suggestions and things to add please let me know!!!
 
+-- Helper function for animation delays
+local function sleep(n)
+    local t = os.clock()
+    while os.clock() - t < n do end
+end
 
-io.write("Enter first number: ")
-a = io.read("*n")
-io.write("Enter second number: ")
-b = io.read("*n")
-print("Addition:", a + b)
-print("Subtraction:", a - b)
-print("Multiplication:", a * b)
-print("Division:", a / b)
+-- Animation For Mistakes / Error (Cookie)
+local function show_cookie_error()
+    print("\n  [ ERROR! OOPS... ]")
+    for i = 1, 2 do
+        print("     .-'''''-.  ")
+        print("    /  o   O  \\ ")
+        print("   |  o   o  o |  <-- (Crispy Error Cookie!)")
+        print("    \\   O    /  ")
+        print("     '-.....-'  ")
+        sleep(0.3) -- 0.3 seconds delay for animation effect
+    end
+end
+
+-- Success Animation Effect (Cupcake)
+local function show_cupcake_success()
+    print("\n  [ WELL DONE! EXCELLENT WORK! ]")
+    print("       (  )  (  )  ")
+    print("      (  *  *  )  ")
+    print("     ===========")
+    print("     \\         /  <-- (Sweet Success Cupcake!)")
+    print("      \\_______/ \n")
+end
+
+-- Input reading and validation
+io.write("Enter first number (a): ")
+local a = io.read("*n")
+if not a then
+    show_cookie_error()
+    os.exit(1)
+end
+
+io.write("Enter second number (b): ")
+local b = io.read("*n")
+if not b then
+    show_cookie_error()
+    os.exit(1)
+end
+
+print("\n Basic Operations ")
+print("Addition: a + b = " .. (a + b))
+print("Subtraction: a - b = " .. (a - b))
+print("Multiplication: a * b = " .. (a * b))
+
+-- Check for division by zero
+if b ~= 0 then
+    print("Division: a / b = " .. (a / b))
+    show_cupcake_success()
+else
+    print("Division: Cannot divide by zero!")
+    show_cookie_error()
+end
+
+print(" Powers ")
+-- (^2) & (^3)
+print("a squared (a^2): " .. (a ^ 2))
+print("a cubed (a^3): " .. (a ^ 3))
+print("b squared (b^2): " .. (b ^ 2))
+print("b cubed (b^3): " .. (b ^ 3))
+
+-- The user picks the power he/she wants to use (a^b)
+print("a raised to power b (a^b): " .. (a ^ b))
+
+io.write("\n Enter a custom exponent power to raise 'a': ")
+local power_exp = io.read("*n")
+if power_exp then
+    print("a^" .. power_exp .. " = " .. (a ^ power_exp))
+    show_cupcake_success()
+else
+    print("Invalid exponent entered!")
+    show_cookie_error()
+    os.exit(1)
+end
+
+print(" Square Root ")
+if a >= 0 then
+    print("Square root of a (√a): " .. math.sqrt(a))
+    show_cupcake_success()
+else
+    print("Square root of a: Cannot calculate sqrt of negative number!")
+    show_cookie_error()
+end
+
+if b >= 0 then
+    print("Square root of b (√b): " .. math.sqrt(b))
+    show_cupcake_success()
+else
+    print("Square root of b: Cannot calculate sqrt of negative number!")
+    show_cookie_error()
+end

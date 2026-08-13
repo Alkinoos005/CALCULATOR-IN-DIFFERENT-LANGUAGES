@@ -14,11 +14,101 @@ It is available on nearly all modern operating systems, making it a versatile to
 Although most users think of the shell as an interactive command interpreter, it is really a programming language in which each statement runs a command. */
 
 
-echo "Enter first number: "
-read a
-echo "Enter second number: "
-read b
-echo "Addition:" $(echo "$a + $b" | bc)
-echo "Subtraction:" $(echo "$a - $b" | bc)
-echo "Multiplication:" $(echo "$a * $b" | bc)
-echo "Division:" $(echo "scale=2; $a / $b" | bc)
+#!/bin/bash
+
+# Animation For Mistakes / Error (Cookie)
+show_cookie_error() {
+    echo ""
+    echo "  [ ERROR! OOPS... ]"
+    for i in {1..2}; do
+        echo "     .-'''''-.  "
+        echo "    /  o   O  \\ "
+        echo "   |  o   o  o |  <-- (Crispy Error Cookie!)"
+        echo "    \\   O    /  "
+        echo "     '-.....-'  "
+        sleep 0.3 # 0.3 seconds delay for animation effect
+    done
+}
+
+# Success Animation Effect (Cupcake)
+show_cupcake_success() {
+    echo ""
+    echo "  [ WELL DONE! EXCELLENT WORK! ]"
+    echo "       (  )  (  )  "
+    echo "      (  *  *  )  "
+    echo "     ==========="
+    echo "     \\         /  <-- (Sweet Success Cupcake!)"
+    echo "      \\_______/ "
+    echo ""
+}
+
+# Function to validate numeric input
+is_numeric() {
+    [[ "$1" =~ ^-?[0-9]+([.][0-9]+)?$ ]]
+}
+
+# Input reading
+read -p "Enter first number (a): " a
+if ! is_numeric "$a"; then
+    show_cookie_error
+    exit 1
+fi
+
+read -p "Enter second number (b): " b
+if ! is_numeric "$b"; then
+    show_cookie_error
+    exit 1
+fi
+
+echo ""
+echo " Basic Operations "
+echo "Addition: a + b = $(echo "scale=4; $a + $b" | bc -l)"
+echo "Subtraction: a - b = $(echo "scale=4; $a - $b" | bc -l)"
+echo "Multiplication: a * b = $(echo "scale=4; $a * $b" | bc -l)"
+
+# Check for division by zero
+if (( $(echo "$b != 0" | bc -l) )); then
+    echo "Division: a / b = $(echo "scale=4; $a / $b" | bc -l)"
+    show_cupcake_success
+else
+    echo "Division: Cannot divide by zero!"
+    show_cookie_error
+fi
+
+echo " Powers "
+# (^2) & (^3)
+echo "a squared (a^2): $(echo "scale=4; $a ^ 2" | bc -l)"
+echo "a cubed (a^3): $(echo "scale=4; $a ^ 3" | bc -l)"
+echo "b squared (b^2): $(echo "scale=4; $b ^ 2" | bc -l)"
+echo "b cubed (b^3): $(echo "scale=4; $b ^ 3" | bc -l)"
+
+# The user picks the power he/she wants to use (a^b)
+echo "a raised to power b (a^b): $(echo "scale=4; $a ^ $b" | bc -l)"
+
+echo ""
+read -p " Enter a custom exponent power to raise 'a': " power_exp
+if is_numeric "$power_exp"; then
+    echo "a^$power_exp = $(echo "scale=4; $a ^ $power_exp" | bc -l)"
+    show_cupcake_success
+else
+    echo "Invalid exponent entered!"
+    show_cookie_error
+    exit 1
+fi
+
+echo " Square Root "
+if (( $(echo "$a >= 0" | bc -l) )); then
+    echo "Square root of a (√a): $(echo "scale=4; sqrt($a)" | bc -l)"
+    show_cupcake_success
+else
+    echo "Square root of a: Cannot calculate sqrt of negative number!"
+    show_cookie_error
+fi
+
+if (( $(echo "$b >= 0" | bc -l) )); then
+    echo "Square root of b (√b): $(echo "scale=4; sqrt($b)" | bc -l)"
+    show_cupcake_success
+else
+    echo "Square root of b: Cannot calculate sqrt of negative number!"
+    show_cookie_error
+fi

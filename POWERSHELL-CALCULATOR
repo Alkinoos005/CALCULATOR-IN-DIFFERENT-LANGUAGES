@@ -2,10 +2,97 @@
 //Hope you like it!!!
 //If you have any  suggestions and things to add please let me know!!!
 
-PowerShell
-$a = Read-Host "Enter first number"
-$b = Read-Host "Enter second number"
-Write-Host "Addition:" ($a + $b)
-Write-Host "Subtraction:" ($a - $b)
-Write-Host "Multiplication:" ($a * $b)
-Write-Host "Division:" ([double]$a / [double]$b)
+# Animation For Mistakes / Error (Cookie)
+function Show-CookieError {
+    Write-Host "`n  [ ERROR! OOPS... ]" -ForegroundColor Red
+    for ($i = 0; $i -lt 2; $i++) {
+        Write-Host "     .-'''''-.  "
+        Write-Host "    /  o   O  \ "
+        Write-Host "   |  o   o  o |  <-- (Crispy Error Cookie!)"
+        Write-Host "    \   O    /  "
+        Write-Host "     '-.....-'  "
+        Start-Sleep -Milliseconds 300 # 0.3 seconds delay for animation effect
+    }
+}
+
+# Success Animation Effect (Cupcake)
+function Show-CupcakeSuccess {
+    Write-Host "`n  [ WELL DONE! EXCELLENT WORK! ]" -ForegroundColor Green
+    Write-Host "       (  )  (  )  "
+    Write-Host "      (  *  *  )  "
+    Write-Host "     ==========="
+    Write-Host "     \         /  <-- (Sweet Success Cupcake!)"
+    Write-Host "      \_______/ `n"
+}
+
+# Helper function to read valid Double input
+function Get-DoubleInput {
+    param ([string]$promptMsg)
+    
+    $rawInput = Read-Host $promptMsg
+    $val = 0.0
+    
+    if ([double]::TryParse($rawInput, [ref]$val)) {
+        return $val
+    } else {
+        Show-CookieError
+        return $null
+    }
+}
+
+# Input reading
+$a = Get-DoubleInput "Enter first number (a)"
+if ($null -eq $a) { exit }
+
+$b = Get-DoubleInput "Enter second number (b)"
+if ($null -eq $b) { exit }
+
+Write-Host "`n Basic Operations "
+Write-Host "Addition: a + b = "$($a + $b)
+Write-Host "Subtraction: a - b = "$($a - $b)
+Write-Host "Multiplication: a * b = "$($a * $b)
+
+# Check for division by zero
+if ($b -ne 0) {
+    Write-Host "Division: a / b = "$($a / $b)
+    Show-CupcakeSuccess
+} else {
+    Write-Host "Division: Cannot divide by zero!"
+    Show-CookieError
+}
+
+Write-Host " Powers "
+# (^2) & (^3)
+Write-Host "a squared (a^2): "$([Math]::Pow($a, 2))
+Write-Host "a cubed (a^3): "$([Math]::Pow($a, 3))
+Write-Host "b squared (b^2): "$([Math]::Pow($a, 2))
+Write-Host "b cubed (b^3): "$([Math]::Pow($b, 3))
+
+# The user picks the power he/she wants to use (a^b)
+Write-Host "a raised to power b (a^b): "$([Math]::Pow($a, $b))
+
+$powerExp = Get-DoubleInput "`n Enter a custom exponent power to raise 'a'"
+if ($null -ne $powerExp) {
+    Write-Host "a^$powerExp = "$([Math]::Pow($a, $powerExp))
+    Show-CupcakeSuccess
+} else {
+    Write-Host "Invalid exponent entered!"
+    exit
+}
+
+Write-Host " Square Root "
+if ($a -ge 0) {
+    Write-Host "Square root of a (√a): "$([Math]::Sqrt($a))
+    Show-CupcakeSuccess
+} else {
+    Write-Host "Square root of a: Cannot calculate sqrt of negative number!"
+    Show-CookieError
+}
+
+if ($b -ge 0) {
+    Write-Host "Square root of b (√b): "$([Math]::Sqrt($b))
+    Show-CupcakeSuccess
+} else {
+    Write-Host "Square root of b: Cannot calculate sqrt of negative number!"
+    Show-CookieError
+}

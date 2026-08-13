@@ -3,6 +3,108 @@
 //If you have any  suggestions and things to add please let me know!!!
 
 import 'dart:io';
+import 'dart:math';
+
+// Animation For Mistakes / Error (Cookie)
+void showCookieError() {
+  print("\n  [ ERROR! OOPS... ]");
+  for (int i = 0; i < 2; i++) {
+    print("     .-'''''-.  ");
+    print("    /  o   O  \\ ");
+    print("   |  o   o  o |  <-- (Crispy Error Cookie!)");
+    print("    \\   O    /  ");
+    print("     '-.....-'  ");
+    sleep(const Duration(milliseconds: 300)); // 0.3 seconds delay
+  }
+}
+
+// Success Animation Effect (Cupcake)
+void showCupcakeSuccess() {
+  print("\n  [ WELL DONE! EXCELLENT WORK! ]");
+  print("       (  )  (  )  ");
+  print("      (  *  *  )  ");
+  print("     ===========");
+  print("     \\         /  <-- (Sweet Success Cupcake!)");
+  print("      \\_______/ \n");
+}
+
+// Helper function to read valid double input safely
+double? getDoubleInput(String prompt) {
+  stdout.write(prompt);
+  String? input = stdin.readLineSync();
+  if (input == null) {
+    showCookieError();
+    return null;
+  }
+
+  double? value = double.tryParse(input);
+  if (value == null) {
+    showCookieError();
+    return null;
+  }
+  return value;
+}
+
+void main() {
+  double? a = getDoubleInput("Enter first number (a): ");
+  if (a == null) exit(1);
+
+  double? b = getDoubleInput("Enter second number (b): ");
+  if (b == null) exit(1);
+
+  print("\n Basic Operations ");
+  print("Addition: a + b = ${a + b}");
+  print("Subtraction: a - b = ${a - b}");
+  print("Multiplication: a * b = ${a * b}");
+
+  // Check for division by zero
+  if (b != 0) {
+    print("Division: a / b = ${a / b}");
+    showCupcakeSuccess();
+  } else {
+    print("Division: Cannot divide by zero!");
+    showCookieError();
+  }
+
+  print(" Powers ");
+  // (^2) & (^3)
+  print("a squared (a^2): ${pow(a, 2)}");
+  print("a cubed (a^3): ${pow(a, 3)}");
+  print("b squared (b^2): ${pow(b, 2)}");
+  print("b cubed (b^3): ${pow(b, 3)}");
+
+  // The user picks the power he/she wants to use (a^b)
+  print("a raised to power b (a^b): ${pow(a, b)}");
+
+  double? powerExp = getDoubleInput("\n Enter a custom exponent power to raise 'a': ");
+  if (powerExp != null) {
+    print("a^$powerExp = ${pow(a, powerExp)}");
+    showCupcakeSuccess();
+  } else {
+    print("Invalid exponent entered!");
+    exit(1);
+  }
+
+  print(" Square Root ");
+  if (a >= 0) {
+    print("Square root of a (√a): ${sqrt(a)}");
+    showCupcakeSuccess();
+  } else {
+    print("Square root of a: Cannot calculate sqrt of negative number!");
+    showCookieError();
+  }
+
+  if (b >= 0) {
+    print("Square root of b (√b): ${sqrt(b)}");
+    showCupcakeSuccess();
+  } else {
+    print("Square root of b: Cannot calculate sqrt of negative number!");
+    showCookieError();
+  }
+}
+
+
+import 'dart:io';
 
 void main() {
   stdout.write("Enter first number: ");

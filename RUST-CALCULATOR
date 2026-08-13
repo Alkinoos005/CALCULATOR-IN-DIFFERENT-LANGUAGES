@@ -1,1 +1,19 @@
-fvecwxsazswdufgteiow
+
+
+use std::io;
+
+fn main() {
+    let mut input = String::new();
+    println!("Enter first number: ");
+    io::stdin().read_line(&mut input).expect("Failed to read line");
+    let a: f64 = input.trim().parse().expect("Invalid input");
+    input.clear();
+    println!("Enter second number: ");
+    io::stdin().read_line(&mut input).expect("Failed to read line");
+    let b: f64 = input.trim().parse().expect("Invalid input");
+
+    println!("Addition: {}", a + b);
+    println!("Subtraction: {}", a - b);
+    println!("Multiplication: {}", a * b);
+    println!("Division: {}", a / b);
+}

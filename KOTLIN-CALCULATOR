@@ -1,1 +1,10 @@
-csisunsnncsdds
+fun main() {
+    print("Enter first number: ")
+    val a = readLine()!!.toDouble()
+    print("Enter second number: ")
+    val b = readLine()!!.toDouble()
+    println("Addition: ${a + b}")
+    println("Subtraction: ${a - b}")
+    println("Multiplication: ${a * b}")
+    println("Division: ${a / b}")
+}

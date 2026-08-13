@@ -3,20 +3,96 @@
 //If you have any  suggestions and things to add please let me know!!!
 
 
-use std::io;
+import java.lang.Thread
+import kotlin.math.pow
+import kotlin.math.sqrt
+import kotlin.system.exitProcess
 
-fn main() {
-    let mut input = String::new();
-    println!("Enter first number: ");
-    io::stdin().read_line(&mut input).expect("Failed to read line");
-    let a: f64 = input.trim().parse().expect("Invalid input");
-    input.clear();
-    println!("Enter second number: ");
-    io::stdin().read_line(&mut input).expect("Failed to read line");
-    let b: f64 = input.trim().parse().expect("Invalid input");
+// Animation For Mistakes / Error (Cookie)
+fun showCookieError() {
+    println("\n  [ ERROR! OOPS... ]")
+    for (i in 0 until 2) {
+        println("     .-'''''-.  ")
+        println("    /  o   O  \\ ")
+        println("   |  o   o  o |  <-- (Crispy Error Cookie!)")
+        println("    \\   O    /  ")
+        println("     '-.....-'  ")
+        Thread.sleep(300) // 0.3 seconds delay for animation effect
+    }
+}
 
-    println!("Addition: {}", a + b);
-    println!("Subtraction: {}", a - b);
-    println!("Multiplication: {}", a * b);
-    println!("Division: {}", a / b);
+// Success Animation Effect (Cupcake)
+fun showCupcakeSuccess() {
+    println("\n  [ WELL DONE! EXCELLENT WORK! ]")
+    println("       (  )  (  )  ")
+    println("      (  *  *  )  ")
+    println("     ===========")
+    println("     \\         /  <-- (Sweet Success Cupcake!)")
+    println("      \\_______/ \n")
+}
+
+// Helper function for safe input reading
+fun getDoubleInput(prompt: String): Double? {
+    print(prompt)
+    val input = readLine()
+    val value = input?.toDoubleOrNull()
+    if (value == null) {
+        showCookieError()
+    }
+    return value
+}
+
+fun main() {
+    val a = getDoubleInput("Enter first number (a): ") ?: exitProcess(1)
+    val b = getDoubleInput("Enter second number (b): ") ?: exitProcess(1)
+
+    println("\n Basic Operations ")
+    println("Addition: a + b = ${a + b}")
+    println("Subtraction: a - b = ${a - b}")
+    println("Multiplication: a * b = ${a * b}")
+
+    // Check for division by zero
+    if (b != 0.0) {
+        println("Division: a / b = ${a / b}")
+        showCupcakeSuccess()
+    } else {
+        println("Division: Cannot divide by zero!")
+        showCookieError()
+    }
+
+    println(" Powers ")
+    // (^2) & (^3)
+    println("a squared (a^2): ${a.pow(2)}")
+    println("a cubed (a^3): ${a.pow(3)}")
+    println("b squared (b^2): ${b.pow(2)}")
+    println("b cubed (b^3): ${b.pow(3)}")
+
+    // The user picks the power he/she wants to use (a^b)
+    println("a raised to power b (a^b): ${a.pow(b)}")
+
+    val powerExp = getDoubleInput("\n Enter a custom exponent power to raise 'a': ")
+    if (powerExp != null) {
+        println("a^$powerExp = ${a.pow(powerExp)}")
+        showCupcakeSuccess()
+    } else {
+        println("Invalid exponent entered!")
+        exitProcess(1)
+    }
+
+    println(" Square Root ")
+    if (a >= 0) {
+        println("Square root of a (√a): ${sqrt(a)}")
+        showCupcakeSuccess()
+    } else {
+        println("Square root of a: Cannot calculate sqrt of negative number!")
+        showCookieError()
+    }
+
+    if (b >= 0) {
+        println("Square root of b (√b): ${sqrt(b)}")
+        showCupcakeSuccess()
+    } else {
+        println("Square root of b: Cannot calculate sqrt of negative number!")
+        showCookieError()
+    }
 }

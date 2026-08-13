@@ -1,1 +1,10 @@
-ddbhuycunjsdmkl
+print("Enter first number: ", terminator: "")
+if let a = Double(readLine()!) {
+    print("Enter second number: ", terminator: "")
+    if let b = Double(readLine()!) {
+        print("Addition: \(a + b)")
+        print("Subtraction: \(a - b)")
+        print("Multiplication: \(a * b)")
+        print("Division: \(a / b)")
+    }
+}

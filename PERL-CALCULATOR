@@ -1,3 +1,8 @@
+// Here's the calculator in MATLAB programming language!!!
+//Hope you like it!!!
+//If you have any  suggestions and things to add please let me know!!!
+
+
 print "Enter first number: ";
 $a = <STDIN>;
 print "Enter second number: ";

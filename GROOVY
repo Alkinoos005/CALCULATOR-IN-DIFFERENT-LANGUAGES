@@ -94,11 +94,3 @@ if (b >= 0) {
     println("Square root of b: Cannot calculate sqrt of negative number!")
     showCookieError()
 }
-
-Groovy
-def a = Double.parseDouble(System.console().readLine("Enter first number: "))
-def b = Double.parseDouble(System.console().readLine("Enter second number: "))
-println("Addition: ${a + b}")
-println("Subtraction: ${a - b}")
-println("Multiplication: ${a * b}")
-println("Division: ${a / b}")

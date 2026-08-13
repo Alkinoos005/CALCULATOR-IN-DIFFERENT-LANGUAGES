@@ -1,3 +1,8 @@
+// Here's the calculator in JAVASCRIPT programming language!!!
+//Hope you like it!!!
+//If you have any  suggestions and things to add please let me know!!!
+
+
 io.write("Enter first number: ")
 a = io.read("*n")
 io.write("Enter second number: ")

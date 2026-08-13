@@ -13,7 +13,7 @@ Some other ideas were borrowed from the C shell, its successor tcsh, and the Kor
 It is available on nearly all modern operating systems, making it a versatile tool in various computing environments.
 Although most users think of the shell as an interactive command interpreter, it is really a programming language in which each statement runs a command. */
 
-Bash
+
 echo "Enter first number: "
 read a
 echo "Enter second number: "

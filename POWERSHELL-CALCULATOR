@@ -1,1 +1,7 @@
-jhdksmla,;ksjfemeokw,l;saomi
+PowerShell
+$a = Read-Host "Enter first number"
+$b = Read-Host "Enter second number"
+Write-Host "Addition:" ($a + $b)
+Write-Host "Subtraction:" ($a - $b)
+Write-Host "Multiplication:" ($a * $b)
+Write-Host "Division:" ([double]$a / [double]$b)

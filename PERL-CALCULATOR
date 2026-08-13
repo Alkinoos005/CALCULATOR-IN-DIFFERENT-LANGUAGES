@@ -1,0 +1,8 @@
+print "Enter first number: ";
+$a = <STDIN>;
+print "Enter second number: ";
+$b = <STDIN>;
+print "Addition: " . ($a + $b) . "\n";
+print "Subtraction: " . ($a - $b) . "\n";
+print "Multiplication: " . ($a * $b) . "\n";
+print "Division: " . ($a / $b) . "\n";

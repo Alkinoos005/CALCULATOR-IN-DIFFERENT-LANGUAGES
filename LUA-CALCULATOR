@@ -1,0 +1,8 @@
+io.write("Enter first number: ")
+a = io.read("*n")
+io.write("Enter second number: ")
+b = io.read("*n")
+print("Addition:", a + b)
+print("Subtraction:", a - b)
+print("Multiplication:", a * b)
+print("Division:", a / b)

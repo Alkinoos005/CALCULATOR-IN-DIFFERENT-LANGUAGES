@@ -2,18 +2,102 @@
 //Hope you like it!!!
 //If you have any  suggestions and things to add please let me know!!!
 
+
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+	"os"
+	"time"
+)
+
+// Animation For Mistakes / Error (Cookie)
+func showCookieError() {
+	fmt.Println("\n  [ ERROR! OOPS... ]")
+	for i := 0; i < 2; i++ {
+		fmt.Println("     .-'''''-.  ")
+		fmt.Println("    /  o   O  \\ ")
+		fmt.Println("   |  o   o  o |  <-- (Crispy Error Cookie!)")
+		fmt.Println("    \\   O    /  ")
+		fmt.Println("     '-.....-'  ")
+		time.Sleep(300 * time.Millisecond) // 0.3 seconds delay for animation effect
+	}
+}
+
+// Success Animation Effect (Cupcake)
+func showCupcakeSuccess() {
+	fmt.Println("\n  [ WELL DONE! EXCELLENT WORK! ]")
+	fmt.Println("       (  )  (  )  ")
+	fmt.Println("      (  *  *  )  ")
+	fmt.Println("     ===========")
+	fmt.Println("     \\         /  <-- (Sweet Success Cupcake!)")
+	fmt.Println("      \\_______/ \n")
+}
 
 func main() {
-    var a, b float64
-    fmt.Print("Enter first number: ")
-    fmt.Scan(&a)
-    fmt.Print("Enter second number: ")
-    fmt.Scan(&b)
-    fmt.Println("Addition:", a + b)
-    fmt.Println("Subtraction:", a - b)
-    fmt.Println("Multiplication:", a * b)
-    fmt.Println("Division:", a / b)
+	var a, b, powerExp float64
+
+	fmt.Print("Enter first number (a): ")
+	if _, err := fmt.Scan(&a); err != nil {
+		showCookieError()
+		os.Exit(1)
+	}
+
+	fmt.Print("Enter second number (b): ")
+	if _, err := fmt.Scan(&b); err != nil {
+		showCookieError()
+		os.Exit(1)
+	}
+
+	fmt.Println("\n Basic Operations ")
+	fmt.Printf("Addition: a + b = %f\n", a+b)
+	fmt.Printf("Subtraction: a - b = %f\n", a-b)
+	fmt.Printf("Multiplication: a * b = %f\n", a*b)
+
+	// Check for division by zero
+	if b != 0 {
+		fmt.Printf("Division: a / b = %f\n", a/b)
+		showCupcakeSuccess()
+	} else {
+		fmt.Println("Division: Cannot divide by zero!")
+		showCookieError()
+	}
+
+	fmt.Println(" Powers ")
+	// (^2) & (^3)
+	fmt.Printf("a squared (a^2): %f\n", math.Pow(a, 2))
+	fmt.Printf("a cubed (a^3): %f\n", math.Pow(a, 3))
+	fmt.Printf("b squared (b^2): %f\n", math.Pow(b, 2))
+	fmt.Printf("b cubed (b^3): %f\n", math.Pow(b, 3))
+
+	// The user picks the power he/she wants to use (a^b)
+	fmt.Printf("a raised to power b (a^b): %f\n", math.Pow(a, b))
+
+	fmt.Print("\n Enter a custom exponent power to raise 'a': ")
+	if _, err := fmt.Scan(&powerExp); err == nil {
+		fmt.Printf("a^%f = %f\n", powerExp, math.Pow(a, powerExp))
+		showCupcakeSuccess()
+	} else {
+		fmt.Println("Invalid exponent entered!")
+		showCookieError()
+		os.Exit(1)
+	}
+
+	fmt.Println(" Square Root ")
+	if a >= 0 {
+		fmt.Printf("Square root of a (√a): %f\n", math.Sqrt(a))
+		showCupcakeSuccess()
+	} else {
+		fmt.Println("Square root of a: Cannot calculate sqrt of negative number!")
+		showCookieError()
+	}
+
+	if b >= 0 {
+		fmt.Printf("Square root of b (√b): %f\n", math.Sqrt(b))
+		showCupcakeSuccess()
+	} else {
+		fmt.Println("Square root of b: Cannot calculate sqrt of negative number!")
+		showCookieError()
+	}
 }

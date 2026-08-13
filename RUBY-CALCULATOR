@@ -1,1 +1,11 @@
 Here's a ruby programming calculator
+
+
+print "Enter first number: "
+a = gets.to_f
+print "Enter second number: "
+b = gets.to_f
+puts "Addition: #{a + b}"
+puts "Subtraction: #{a - b}"
+puts "Multiplication: #{a * b}"
+puts "Division: #{a / b}"

@@ -2,12 +2,102 @@
 //Hope you like it!!!
 //If you have any  suggestions and things to add please let me know!!!
 
+use strict;
+use warnings;
+use Time::HiRes qw(usleep);
+use Scalar::Util qw(looks_like_number);
 
-print "Enter first number: ";
-$a = <STDIN>;
-print "Enter second number: ";
-$b = <STDIN>;
-print "Addition: " . ($a + $b) . "\n";
-print "Subtraction: " . ($a - $b) . "\n";
-print "Multiplication: " . ($a * $b) . "\n";
-print "Division: " . ($a / $b) . "\n";
+# Animation For Mistakes / Error (Cookie)
+sub show_cookie_error {
+    print "\n  [ ERROR! OOPS... ]\n";
+    for (my $i = 0; $i < 2; $i++) {
+        print "     .-'''''-.  \n";
+        print "    /  o   O  \\ \n";
+        print "   |  o   o  o |  <-- (Crispy Error Cookie!)\n";
+        print "    \\   O    /  \n";
+        print "     '-.....-'  \n";
+        usleep(300000); # 0.3 seconds delay for animation effect
+    }
+}
+
+# Success Animation Effect (Cupcake)
+sub show_cupcake_success {
+    print "\n  [ WELL DONE! EXCELLENT WORK! ]\n";
+    print "       (  )  (  )  \n";
+    print "      (  *  *  )  \n";
+    print "     ===========\n";
+    print "     \\         /  <-- (Sweet Success Cupcake!)\n";
+    print "      \\_______/ \n\n";
+}
+
+# Helper function to get valid number input
+sub get_num_input {
+    my ($prompt) = @_;
+    print $prompt;
+    my $input = <STDIN>;
+    return undef unless defined $input;
+    
+    chomp($input);
+    if (looks_like_number($input)) {
+        return $input + 0; # Convert to numeric
+    } else {
+        show_cookie_error();
+        return undef;
+    }
+}
+
+my $a = get_num_input("Enter first number (a): ");
+exit(1) unless defined $a;
+
+my $b = get_num_input("Enter second number (b): ");
+exit(1) unless defined $b;
+
+print "\n Basic Operations \n";
+print "Addition: a + b = " . ($a + $b) . "\n";
+print "Subtraction: a - b = " . ($a - $b) . "\n";
+print "Multiplication: a * b = " . ($a * $b) . "\n";
+
+# Check for division by zero
+if ($b != 0) {
+    print "Division: a / b = " . ($a / $b) . "\n";
+    show_cupcake_success();
+} else {
+    print "Division: Cannot divide by zero!\n";
+    show_cookie_error();
+}
+
+print " Powers \n";
+# (^2) & (^3)
+print "a squared (a^2): " . ($a ** 2) . "\n";
+print "a cubed (a^3): " . ($a ** 3) . "\n";
+print "b squared (b^2): " . ($b ** 2) . "\n";
+print "b cubed (b^3): " . ($b ** 3) . "\n";
+
+# The user picks the power he/she wants to use (a^b)
+print "a raised to power b (a^b): " . ($a ** $b) . "\n";
+
+my $power_exp = get_num_input("\n Enter a custom exponent power to raise 'a': ");
+if (defined $power_exp) {
+    print "a^$power_exp = " . ($a ** $power_exp) . "\n";
+    show_cupcake_success();
+} else {
+    print "Invalid exponent entered!\n";
+    exit(1);
+}
+
+print " Square Root \n";
+if ($a >= 0) {
+    print "Square root of a (√a): " . sqrt($a) . "\n";
+    show_cupcake_success();
+} else {
+    print "Square root of a: Cannot calculate sqrt of negative number!\n";
+    show_cookie_error();
+}
+
+if ($b >= 0) {
+    print "Square root of b (√b): " . sqrt($b) . "\n";
+    show_cupcake_success();
+} else {
+    print "Square root of b: Cannot calculate sqrt of negative number!\n";
+    show_cookie_error();
+}

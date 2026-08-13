@@ -8,3 +8,108 @@ console.log("Addition:", a + b);
 console.log("Subtraction:", a - b);
 console.log("Multiplication:", a * b);
 console.log("Division:", a / b);
+
+
+// Helper function for Animation Delays
+const sleep = (ms: number): Promise<void> => 
+    new Promise((resolve) => setTimeout(resolve, ms));
+
+// Animation For Mistakes / Error (Cookie)
+async function showCookieError(): Promise<void> {
+    console.log("\n  [ ERROR! OOPS... ]");
+    for (let i: number = 0; i < 2; i++) {
+        console.log("     .-'''''-.  ");
+        console.log("    /  o   O  \\ ");
+        console.log("   |  o   o  o |  <-- (Crispy Error Cookie!)");
+        console.log("    \\   O    /  ");
+        console.log("     '-.....-'  ");
+        await sleep(300); // 0.3 seconds delay for animation effect
+    }
+}
+
+// Success Animation Effect (Cupcake)
+function showCupcakeSuccess(): void {
+    console.log("\n  [ WELL DONE! EXCELLENT WORK! ]");
+    console.log("       (  )  (  )  ");
+    console.log("      (  *  *  )  ");
+    console.log("     ===========");
+    console.log("     \\         /  <-- (Sweet Success Cupcake!)");
+    console.log("      \\_______/ \n");
+}
+
+async function runCalculator(): Promise<void> {
+    const inputA: string | null = prompt("Enter first number (a): ");
+    const inputB: string | null = prompt("Enter second number (b): ");
+
+    if (inputA === null || inputB === null) {
+        await showCookieError();
+        return;
+    }
+
+    const a: number = parseFloat(inputA);
+    const b: number = parseFloat(inputB);
+
+    // Validation check for numeric inputs
+    if (isNaN(a) || isNaN(b)) {
+        await showCookieError();
+        return;
+    }
+
+    console.log("\n Basic Operations ");
+    console.log(`Addition: a + b = ${a + b}`);
+    console.log(`Subtraction: a - b = ${a - b}`);
+    console.log(`Multiplication: a * b = ${a * b}`);
+
+    // Check for division by zero
+    if (b !== 0) {
+        console.log(`Division: a / b = ${a / b}`);
+        showCupcakeSuccess();
+    } else {
+        console.log("Division: Cannot divide by zero!");
+        await showCookieError();
+    }
+
+    console.log(" Powers ");
+    // (^2) & (^3) & custom exponent
+    console.log(`a squared (a^2): ${Math.pow(a, 2)}`);
+    console.log(`a cubed (a^3): ${Math.pow(a, 3)}`);
+    console.log(`b squared (b^2): ${Math.pow(b, 2)}`);
+    console.log(`b cubed (b^3): ${Math.pow(b, 3)}`);
+
+    // The user picks the power he/she wants to use (a^b)
+    console.log(`a raised to power b (a^b): ${Math.pow(a, b)}`);
+
+    const inputExp: string | null = prompt("\n Enter a custom exponent power to raise 'a': ");
+    if (inputExp !== null) {
+        const powerExp: number = parseFloat(inputExp);
+        if (!isNaN(powerExp)) {
+            console.log(`a^${powerExp} = ${Math.pow(a, powerExp)}`);
+            showCupcakeSuccess();
+        } else {
+            console.log("Invalid exponent entered!");
+            await showCookieError();
+        }
+    } else {
+        await showCookieError();
+    }
+
+    console.log(" Square Root ");
+    if (a >= 0) {
+        console.log(`Square root of a (√a): ${Math.sqrt(a)}`);
+        showCupcakeSuccess();
+    } else {
+        console.log("Square root of a: Cannot calculate sqrt of negative number!");
+        await showCookieError();
+    }
+
+    if (b >= 0) {
+        console.log(`Square root of b (√b): ${Math.sqrt(b)}`);
+        showCupcakeSuccess();
+    } else {
+        console.log("Square root of b: Cannot calculate sqrt of negative number!");
+        await showCookieError();
+    }
+}
+
+// Execute the calculator
+runCalculator();

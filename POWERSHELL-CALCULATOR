@@ -2,6 +2,22 @@
 //Hope you like it!!!
 //If you have any  suggestions and things to add please let me know!!!
 
+/* I would argue that PowerShell is indeed a programming language.
+It would be classified as a scripting language, since there is no need to compile it.
+
+PowerShell is a shell program developed by Microsoft for task automation and configuration management.
+As is typical for a shell, it provides a command-line interpreter for interactive use and a script interpreter for automation via a language defined for it.
+Originally only for Windows, known as Windows PowerShell, it was made open-source and cross-platform on August 18 2016,with the introduction of PowerShell Core.
+The former is built on the .NET Framework and the latter on .NET (previously .NET Core).
+
+PowerShell is bundled with current versions of Windows and can be installed on macOS and Linux.
+Since Windows 10 build 14971, PowerShell replaced Command Prompt as the default command shell exposed by File Explorer.
+
+In PowerShell,administrative tasks are generally performed via cmdlets (pronounced command-lets), which are specialized .NET classes implementing a particular operation. 
+These work by accessing data in different data stores like the file system or Windows Registry which are made available to PowerShell via providers.
+Third-party developers can add cmdlets and providers to PowerShell.
+Cmdlets may be used by scripts, which may in turn be packaged into modules. Cmdlets work in tandem with the .NET API.  */
+
 # Animation For Mistakes / Error (Cookie)
 function Show-CookieError {
     Write-Host "`n  [ ERROR! OOPS... ]" -ForegroundColor Red

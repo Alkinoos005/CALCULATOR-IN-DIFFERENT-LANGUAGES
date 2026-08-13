@@ -1,13 +1,90 @@
 
 
 
-print("Enter first number: ", terminator: "")
-if let a = Double(readLine()!) {
-    print("Enter second number: ", terminator: "")
-    if let b = Double(readLine()!) {
-        print("Addition: \(a + b)")
-        print("Subtraction: \(a - b)")
-        print("Multiplication: \(a * b)")
-        print("Division: \(a / b)")
+import Foundation
+
+// Animation For Mistakes / Error (Cookie)
+func showCookieError() {
+    print("\n  [ ERROR! OOPS... ]")
+    for _ in 0..<2 {
+        print("     .-'''''-.  ")
+        print("    /  o   O  \\ ")
+        print("   |  o   o  o |  <-- (Crispy Error Cookie!)")
+        print("    \\   O    /  ")
+        print("     '-.....-'  ")
+        Thread.sleep(forTimeInterval: 0.3) // 0.3 seconds delay for animation effect
     }
+}
+
+// Success Animation Effect (Cupcake)
+func showCupcakeSuccess() {
+    print("\n  [ WELL DONE! EXCELLENT WORK! ]")
+    print("       (  )  (  )  ")
+    print("      (  *  *  )  ")
+    print("     ===========")
+    print("     \\         /  <-- (Sweet Success Cupcake!)")
+    print("      \\_______/ \n")
+}
+
+// Helper function for safe input reading
+func getDoubleInput(prompt: String) -> Double? {
+    print(prompt, terminator: "")
+    if let inputString = readLine(), let value = Double(inputString) {
+        return value
+    } else {
+        showCookieError()
+        return nil
+    }
+}
+
+// Execution Starts Here
+guard let a = getDoubleInput(prompt: "Enter first number (a): ") else { exit(1) }
+guard let b = getDoubleInput(prompt: "Enter second number (b): ") else { exit(1) }
+
+print("\n Basic Operations ")
+print("Addition: a + b = \(a + b)")
+print("Subtraction: a - b = \(a - b)")
+print("Multiplication: a * b = \(a * b)")
+
+// Check for division by zero
+if b != 0 {
+    print("Division: a / b = \(a / b)")
+    showCupcakeSuccess()
+} else {
+    print("Division: Cannot divide by zero!")
+    showCookieError()
+}
+
+print(" Powers ")
+// (^2) & (^3)
+print("a squared (a^2): \(pow(a, 2))")
+print("a cubed (a^3): \(pow(a, 3))")
+print("b squared (b^2): \(pow(b, 2))")
+print("b cubed (b^3): \(pow(b, 3))")
+
+// The user picks the power he/she wants to use (a^b)
+print("a raised to power b (a^b): \(pow(a, b))")
+
+if let powerExp = getDoubleInput(prompt: "\n Enter a custom exponent power to raise 'a': ") {
+    print("a^\(powerExp) = \(pow(a, powerExp))")
+    showCupcakeSuccess()
+} else {
+    print("Invalid exponent entered!")
+}
+
+print(" Square Root ")
+if a >= 0 {
+    print("Square root of a (√a): \(sqrt(a))")
+    showCupcakeSuccess()
+} else {
+    print("Square root of a: Cannot calculate sqrt of negative number!")
+    showCookieError()
+}
+
+if b >= 0 {
+    print("Square root of b (√b): \(sqrt(b))")
+    showCupcakeSuccess()
+} else {
+    print("Square root of b: Cannot calculate sqrt of negative number!")
+    showCookieError()
 }

@@ -1,1 +1,9 @@
-asufyegvhfujsdiomka
+
+
+Groovy
+def a = Double.parseDouble(System.console().readLine("Enter first number: "))
+def b = Double.parseDouble(System.console().readLine("Enter second number: "))
+println("Addition: ${a + b}")
+println("Subtraction: ${a - b}")
+println("Multiplication: ${a * b}")
+println("Division: ${a / b}")

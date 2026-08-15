@@ -1,1 +1,23 @@
 
+ASSEMBLY-CALCULATOR/* linguist-language=Assembly
+BASH-CALCULATOR/* linguist-language=Shell
+"C#- CALCULATOR/*" linguist-language=C#
+"C++ - CALCULATOR/*" linguist-language=C++
+C-CALCULATOR/* linguist-language=C
+DART-CALCULATOR/* linguist-language=Dart
+GO-CALCULATOR/* linguist-language=Go
+GROOVY/* linguist-language=Groovy
+JAVA-CALCULATOR/* linguist-language=Java
+JAVASCRIPT-CALCULATOR/* linguist-language=JavaScript
+KOTLIN-CALCULATOR/* linguist-language=Kotlin
+LUA-CALCULATOR/* linguist-language=Lua
+MATLAB-CALCULATOR/* linguist-language=MATLAB
+PERL-CALCULATOR/* linguist-language=Perl
+PHP-CALCULATOR/* linguist-language=PHP
+POWERSHELL-CALCULATOR/* linguist-language=PowerShell
+PYTHON-CALCULATOR/* linguist-language=Python
+R-CALCULATOR/* linguist-language=R
+RUBY-CALCULATOR/* linguist-language=Ruby
+RUST-CALCULATOR/* linguist-language=Rust
+SWIFT-CALCULATOR/* linguist-language=Swift
+TYPESCRIPT-CALCULATOR/* linguist-language=TypeScript
